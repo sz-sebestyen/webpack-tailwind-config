@@ -3,11 +3,10 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 
-const devMode = process.env.NODE_ENV !== "production";
+const prodMode = process.env.NODE_ENV === "production";
 
 const plugins = [new HtmlWebpackPlugin({ template: "./src/index.html" })];
-if (!devMode) {
-  // enable in production only
+if (prodMode) {
   plugins.push(new MiniCssExtractPlugin());
 }
 
@@ -18,6 +17,7 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, "dist"),
     filename: "bundle.js",
+    clean: true,
   },
   module: {
     rules: [
@@ -25,7 +25,7 @@ module.exports = {
         test: /\.css$/i,
         include: path.resolve(__dirname, "src"),
         use: [
-          devMode ? "style-loader" : MiniCssExtractPlugin.loader,
+          prodMode ? MiniCssExtractPlugin.loader : "style-loader",
           "css-loader",
           "postcss-loader",
         ],
@@ -33,19 +33,16 @@ module.exports = {
       {
         test: /\.s[ac]ss$/i,
         use: [
-          // Creates `style` nodes from JS strings
-          devMode ? "style-loader" : MiniCssExtractPlugin.loader,
-          // Translates CSS into CommonJS
+          prodMode ? MiniCssExtractPlugin.loader : "style-loader",
           "css-loader",
           "postcss-loader",
-          // Compiles Sass to CSS
           "sass-loader",
         ],
       },
     ],
   },
   optimization: {
-    minimize: devMode ? false : true,
+    minimize: prodMode,
     minimizer: [new CssMinimizerPlugin()],
   },
   devServer: {
