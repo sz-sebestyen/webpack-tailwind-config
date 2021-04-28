@@ -1,9 +1,11 @@
 const path = require("path");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 const devMode = process.env.NODE_ENV !== "production";
 
-const plugins = [];
+const plugins = [new HtmlWebpackPlugin({ template: "./src/index.html" })];
 if (!devMode) {
   // enable in production only
   plugins.push(new MiniCssExtractPlugin());
@@ -41,6 +43,10 @@ module.exports = {
         ],
       },
     ],
+  },
+  optimization: {
+    minimize: devMode ? false : true,
+    minimizer: [new CssMinimizerPlugin()],
   },
   devServer: {
     contentBase: path.resolve(__dirname, "dist"),
