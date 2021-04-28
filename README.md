@@ -2,20 +2,13 @@
 
 npm init -y
 
-npm install --save-dev webpack webpack-cli webpack-dev-server style-loader css-loader postcss postcss-loader
+npm install --save-dev webpack webpack-cli webpack-dev-server style-loader css-loader postcss postcss-loader tailwindcss@latest autoprefixer@latest sass-loader node-sass mini-css-extract-plugin css-minimizer-webpack-plugin
 
-npm install -D tailwindcss@latest autoprefixer@latest
-
-mkdir dist src && touch dist/index.html src/index.js src/style.css
+mkdir dist src && touch src/index.html src/index.js src/style.scss src/tailwind.css
 
 webpack.config.js
 
 npx tailwindcss init
+add purge to tailwind config
 
 postcss.config.js
-
-npm install sass-loader node-sass --save-dev
-
-npm install --save-dev mini-css-extract-plugin
-
-npm install css-minimizer-webpack-plugin --save-dev
