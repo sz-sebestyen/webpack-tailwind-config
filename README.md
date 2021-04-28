@@ -14,4 +14,4 @@ npx tailwindcss init
 
 postcss.config.js
 
-npm install sass-loader --save-dev
+npm install sass-loader node-sass --save-dev
