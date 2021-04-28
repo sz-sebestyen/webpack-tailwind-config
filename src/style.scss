@@ -1,0 +1,32 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+$primary: #bc865c;
+$secondary: #fff;
+
+.page {
+  min-height: 100vh;
+  background-color: $primary;
+  color: $secondary;
+
+  .menu {
+    background-color: $secondary;
+
+    &-line {
+      background-color: $primary;
+    }
+  }
+
+  .content ul {
+    li {
+      margin: 10px 0;
+      text-transform: uppercase;
+    }
+  }
+
+  .title {
+    background-color: $secondary;
+    color: $primary;
+  }
+}

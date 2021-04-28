@@ -13,3 +13,5 @@ webpack.config.js
 npx tailwindcss init
 
 postcss.config.js
+
+npm install sass-loader --save-dev
