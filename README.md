@@ -8,9 +8,8 @@ mkdir dist src && touch src/index.html src/index.js src/style.scss src/tailwind.
 
 webpack.config.js
 
-npx tailwindcss init
-add purge to tailwind config
+npx tailwindcss init -p
 
-postcss.config.js
+add purge to tailwind config
 
 package.json npm scripts
